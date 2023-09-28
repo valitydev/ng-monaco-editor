@@ -15,7 +15,7 @@
 
 Using this Module you can utilize the Monaco Editor as an Angular Component. Feel free to contribute, raise feature requests and make it better.
 
-Supports all the options available in monaco-editor [Monaco Editor Options](https://microsoft.github.io/monaco-editor/api/index.html)
+Supports all the options available in monaco-editor [Monaco Editor Options](https://microsoft.github.io/monaco-editor/docs.html)
 
 ## Demo
 
@@ -407,7 +407,7 @@ export class AppModule {
 
 ## Links
 [Monaco Editor](https://github.com/Microsoft/monaco-editor/)<br/>
-[Monaco Editor Options](https://microsoft.github.io/monaco-editor/api/index.html)
+[Monaco Editor Options](https://microsoft.github.io/monaco-editor/docs.html)
 
 ## License
 
