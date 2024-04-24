@@ -7,7 +7,8 @@ import {
   Input,
   OnDestroy,
   Output,
-  ViewChild
+  ViewChild,
+  inject
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NGX_MONACO_EDITOR_CONFIG, NgxMonacoEditorConfig } from './config';
@@ -19,6 +20,7 @@ let loadPromise: Promise<void>;
   template: ''
 })
 export abstract class BaseEditor implements AfterViewInit, OnDestroy {
+  config = inject<NgxMonacoEditorConfig>(NGX_MONACO_EDITOR_CONFIG);
 
   @Input('insideNg')
   set insideNg(insideNg: boolean) {
@@ -39,8 +41,6 @@ export abstract class BaseEditor implements AfterViewInit, OnDestroy {
   protected _options: any;
   protected _windowResizeSubscription: Subscription;
   private _insideNg: boolean = false;
-
-  constructor(@Inject(NGX_MONACO_EDITOR_CONFIG) protected config: NgxMonacoEditorConfig) {}
 
   ngAfterViewInit(): void {
     if (loadedMonaco) {
@@ -85,10 +85,10 @@ export abstract class BaseEditor implements AfterViewInit, OnDestroy {
         // Load AMD loader without over-riding node's require
         } else if (!(<any>window).require.config) {
             var src = `${baseUrl}/monaco/min/vs/loader.js`;
-            
+
             var loaderRequest = new XMLHttpRequest();
             loaderRequest.addEventListener("load", () => {
-                let scriptElem = document.createElement('script'); 
+                let scriptElem = document.createElement('script');
                 scriptElem.type = 'text/javascript';
                 scriptElem.text = [
                     // Monaco uses a custom amd loader that over-rides node's require.

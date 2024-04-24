@@ -1,13 +1,13 @@
-import { Component, Inject, Input, NgZone } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, NgZone, inject } from '@angular/core';
 import { fromEvent } from 'rxjs';
 
 import { BaseEditor } from './base-editor';
-import { NGX_MONACO_EDITOR_CONFIG, NgxMonacoEditorConfig } from './config';
 import { DiffEditorModel } from './types';
 
 declare var monaco: any;
 
 @Component({
+  standalone: true,
   selector: 'ngx-monaco-diff-editor',
   template: '<div class="editor-container" #editorContainer></div>',
   styles: [`
@@ -20,9 +20,11 @@ declare var monaco: any;
       width: 100%;
       height: 98%;
     }
-  `]
+  `],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DiffEditorComponent extends BaseEditor {
+  private zone = inject(NgZone);
 
   _originalModel: DiffEditorModel;
   _modifiedModel: DiffEditorModel;
@@ -56,10 +58,6 @@ export class DiffEditorComponent extends BaseEditor {
       this._editor.dispose();
       this.initMonaco(this.options, this.insideNg);
     }
-  }
-
-  constructor(private zone: NgZone, @Inject(NGX_MONACO_EDITOR_CONFIG) private editorConfig: NgxMonacoEditorConfig) {
-    super(editorConfig);
   }
 
   protected initMonaco(options: any, insideNg: boolean): void {

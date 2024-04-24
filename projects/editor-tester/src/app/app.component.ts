@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { DiffEditorModel, NgxEditorModel } from '../../../editor/src/lib/types';
+import { DiffEditorComponent, EditorComponent } from 'projects/editor/src/public-api';
+import { FormsModule } from '@angular/forms';
+import { JsonPipe } from '@angular/common';
 
 declare var monaco: any;
 
 @Component({
+  standalone: true,
   selector: 'app-root',
+  imports: [FormsModule, JsonPipe, EditorComponent, DiffEditorComponent],
   template: `
     <h1>Editor</h1>
     <button (click)="updateOptions()">Change Language</button>
@@ -17,7 +22,9 @@ declare var monaco: any;
         <ngx-monaco-editor style="height: 100%" [options]="options" [(ngModel)]="code" (onInit)="onInit($event)"></ngx-monaco-editor>
     </div>
 
-    <ngx-monaco-editor *ngIf="showMultiple" [options]="options" [(ngModel)]="code"></ngx-monaco-editor>
+    @if (showMultiple) {
+      <ngx-monaco-editor [options]="options" [(ngModel)]="code"></ngx-monaco-editor>
+    }
 
     <pre>{{code | json}}</pre>
 

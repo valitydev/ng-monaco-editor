@@ -1,14 +1,14 @@
-import { Component, forwardRef, Inject, Input, NgZone } from '@angular/core';
+import { ChangeDetectionStrategy, Component, forwardRef, inject, Input, NgZone } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { fromEvent } from 'rxjs';
 
 import { BaseEditor } from './base-editor';
-import { NGX_MONACO_EDITOR_CONFIG, NgxMonacoEditorConfig } from './config';
 import { NgxEditorModel } from './types';
 
 declare var monaco: any;
 
 @Component({
+  standalone: true,
   selector: 'ngx-monaco-editor',
   template: '<div class="editor-container" #editorContainer></div>',
   styles: [`
@@ -22,6 +22,7 @@ declare var monaco: any;
           height: 98%;
       }
   `],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => EditorComponent),
@@ -29,6 +30,7 @@ declare var monaco: any;
   }]
 })
 export class EditorComponent extends BaseEditor implements ControlValueAccessor {
+  private zone = inject(NgZone);
   private _value: string = '';
 
   propagateChange = (_: any) => {};
@@ -54,10 +56,6 @@ export class EditorComponent extends BaseEditor implements ControlValueAccessor 
       this._editor.dispose();
       this.initMonaco(this.options, this.insideNg);
     }
-  }
-
-  constructor(private zone: NgZone, @Inject(NGX_MONACO_EDITOR_CONFIG) private editorConfig: NgxMonacoEditorConfig) {
-    super(editorConfig);
   }
 
   writeValue(value: any): void {
