@@ -46,7 +46,7 @@ Add the glob to assets in `angular.json`
   "apps": [
     {
       "assets": [
-      { "glob": "**/*", "input": "node_modules/monaco-editor-v2", "output": "/assets/monaco/" }
+      { "glob": "**/*", "input": "node_modules/monaco-editor", "output": "/assets/monaco/" }
       ],
       ...
     }
