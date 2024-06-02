@@ -13,6 +13,7 @@
  - Angular 15: v15.x.x
  - Angular 16: v16.x.x
 - Angular 17: 17.x.x
+- Angular 18: 18.x.x
 
 Using this Module you can utilize the Monaco Editor as an Angular Component. Feel free to contribute, raise feature requests and make it better.
 
@@ -62,7 +63,7 @@ For Angular 6 and below, add the glob to assets in `.angular-cli.json` schema - 
 {
   "options":{
         {"assets": [
-          { "glob": "**/*", "input": "node_modules/ngx-monaco-editor/assets/monaco", "output": "./assets/monaco/" }
+          { "glob": "**/*", "input": "node_modules/ngx-monaco-editor-v2/assets/monaco", "output": "./assets/monaco/" }
 
         ],
         ...
@@ -190,7 +191,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
+import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor-v2';
 import { AppComponent } from './app.component';
 
 const monacoConfig: NgxMonacoEditorConfig = {
@@ -224,7 +225,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
+import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor-v2';
 import { AppComponent } from './app.component';
 
 export function onMonacoLoad() {
@@ -320,7 +321,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
+import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor-v2';
 import { AppComponent } from './app.component';
 
 const monacoConfig: NgxMonacoEditorConfig = {
@@ -381,7 +382,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
+import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor-v2';
 import { AppComponent } from './app.component';
 
 const monacoConfig: NgxMonacoEditorConfig = {
