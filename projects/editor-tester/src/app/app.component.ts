@@ -73,7 +73,7 @@ export class AppComponent implements OnInit {
 
   model: NgxEditorModel = {
     value: this.jsonCode,
-    language: 'json'
+    language: 'typescript'
   };
 
   ngOnInit() {
@@ -87,7 +87,7 @@ export class AppComponent implements OnInit {
       this.options = Object.assign({}, this.options, { language: 'java' });
     } else {
       this.code = this.jsCode;
-      this.options = Object.assign({}, this.options, { language: 'javascript' });
+      this.options = Object.assign({}, this.options, { language: 'typescript' });
     }
 
   }
@@ -102,7 +102,7 @@ export class AppComponent implements OnInit {
     console.log(editor);
     this.model = {
       value: this.jsonCode,
-      language: 'json',
+      language: 'typescript',
       uri: monaco.Uri.parse('a://b/foo.json')
     };
     // let line = editor.getPosition();
