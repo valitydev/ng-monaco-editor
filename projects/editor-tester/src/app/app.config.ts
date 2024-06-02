@@ -1,10 +1,7 @@
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
+import { ApplicationConfig } from '@angular/core';
 
-import { AppComponent } from './app.component';
 import { NgxMonacoEditorConfig } from '../../../editor/src/lib/config';
-import { MonacoEditorModule } from '../../../editor/src/lib/editor.module';
+import { provideMonacoEditor } from '../../../editor/src/lib/editor.module';
 
 declare var monaco: any;
 
@@ -51,17 +48,6 @@ const monacoConfig: NgxMonacoEditorConfig = {
   onMonacoLoad
 };
 
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    MonacoEditorModule.forRoot(monacoConfig)
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule {
-}
+export const appConfig: ApplicationConfig = {
+  providers: [provideMonacoEditor(monacoConfig)]
+};
