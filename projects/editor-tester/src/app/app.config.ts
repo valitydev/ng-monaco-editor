@@ -43,6 +43,7 @@ export function onMonacoLoad() {
 }
 
 const monacoConfig: NgxMonacoEditorConfig = {
+  // You can pass cdn url here instead
   baseUrl: 'assets',
   defaultOptions: { scrollBeyondLastLine: false },
   onMonacoLoad

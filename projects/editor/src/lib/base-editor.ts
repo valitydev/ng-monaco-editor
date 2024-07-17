@@ -51,7 +51,11 @@ export abstract class BaseEditor implements AfterViewInit, OnDestroy {
     } else {
       loadedMonaco = true;
       loadPromise = new Promise<void>((resolve: any) => {
-        const baseUrl = this.config.baseUrl || "./assets";
+        let baseUrl = this.config.baseUrl;
+        // ensure backward compatibility
+        if (baseUrl === "assets" || !baseUrl) {
+          baseUrl = "./assets/monaco/min/vs";
+        }
         if (typeof ((<any>window).monaco) === 'object') {
           this.initMonaco(this._options, this.insideNg);
           resolve();
@@ -59,7 +63,7 @@ export abstract class BaseEditor implements AfterViewInit, OnDestroy {
         }
         const onGotAmdLoader: any = (require?: any) => {
           let usedRequire = require || (<any>window).require;
-          let requireConfig = { paths: { vs: `${baseUrl}/monaco/min/vs` } };
+          let requireConfig = { paths: { vs: `${baseUrl}` } };
           Object.assign(requireConfig, this.config.requireConfig || {});
 
           // Load monaco
@@ -79,12 +83,12 @@ export abstract class BaseEditor implements AfterViewInit, OnDestroy {
         } else if (!(<any>window).require) {
           const loaderScript: HTMLScriptElement = document.createElement('script');
           loaderScript.type = 'text/javascript';
-          loaderScript.src = `${baseUrl}/monaco/min/vs/loader.js`;
+          loaderScript.src = `${baseUrl}/loader.js`;
           loaderScript.addEventListener('load', () => { onGotAmdLoader(); });
           document.body.appendChild(loaderScript);
         // Load AMD loader without over-riding node's require
         } else if (!(<any>window).require.config) {
-            var src = `${baseUrl}/monaco/min/vs/loader.js`;
+            var src = `${baseUrl}/loader.js`;
 
             var loaderRequest = new XMLHttpRequest();
             loaderRequest.addEventListener("load", () => {
