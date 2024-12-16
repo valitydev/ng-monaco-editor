@@ -3,7 +3,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  Inject,
   Input,
   OnDestroy,
   Output,
@@ -17,7 +16,8 @@ let loadedMonaco = false;
 let loadPromise: Promise<void>;
 
 @Component({
-  template: ''
+    template: '',
+    standalone: false
 })
 export abstract class BaseEditor implements AfterViewInit, OnDestroy {
   config = inject<NgxMonacoEditorConfig>(NGX_MONACO_EDITOR_CONFIG);

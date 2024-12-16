@@ -14,7 +14,8 @@
  - Angular 16: v16.x.x
 - Angular 17: 17.x.x
 - Angular 18: 18.x.x
-
+- Angular 19: 19.x.x
+- 
 Using this Module you can utilize the Monaco Editor as an Angular Component. Feel free to contribute, raise feature requests and make it better.
 
 Supports all the options available in monaco-editor [Monaco Editor Options](https://microsoft.github.io/monaco-editor/docs.html)
@@ -195,7 +196,7 @@ import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor-v2'
 import { AppComponent } from './app.component';
 
 const monacoConfig: NgxMonacoEditorConfig = {
-  baseUrl: 'app-name/assets', // configure base path for monaco editor. Starting with version 8.0.0 it defaults to './assets'. Previous releases default to '/assets', or you can pass CDN url here
+  baseUrl: 'app-name/assets', // configure base path for monaco editor. Starting with version 8.0.0 it defaults to './assets'. Previous releases default to '/assets'
   defaultOptions: { scrollBeyondLastLine: false }, // pass default options to be used
   onMonacoLoad: () => { console.log((<any>window).monaco); } // here monaco object will be available as window.monaco use this function to extend monaco editor functionalities.
   requireConfig: { preferScriptTags: true } // allows to oweride configuration passed to monacos loader
@@ -266,7 +267,7 @@ export function onMonacoLoad() {
 }
 
 const monacoConfig: NgxMonacoEditorConfig = {
-  baseUrl: 'assets', // You can pass CDN url here instead 
+  baseUrl: 'assets',
   defaultOptions: { scrollBeyondLastLine: false },
   onMonacoLoad
 };
@@ -325,7 +326,7 @@ import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor-v2'
 import { AppComponent } from './app.component';
 
 const monacoConfig: NgxMonacoEditorConfig = {
-  baseUrl: 'assets', // You can pass CDN url here instead 
+  baseUrl: 'assets', 
   requireConfig: { preferScriptTags: true }
 };
 
