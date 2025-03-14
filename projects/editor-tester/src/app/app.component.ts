@@ -7,15 +7,22 @@ import { JsonPipe } from '@angular/common';
 declare var monaco: any;
 
 @Component({
-    selector: 'app-root',
-    imports: [FormsModule, JsonPipe, EditorComponent, DiffEditorComponent],
-    template: `
+  selector: 'app-root',
+  imports: [FormsModule, JsonPipe, EditorComponent, DiffEditorComponent],
+  template: `
     <h1>Editor</h1>
     <button (click)="updateOptions()">Change Language</button>
     <button (click)="code = ''; codeInput=''">Set Value To Empty String</button>
     <button (click)="code = null; codeInput=null">Set Value To Null</button>
     <button (click)="code = undefined; codeInput=undefined">Set Value To undefined</button>
     <button (click)="showMultiple = !showMultiple">{{showMultiple ? 'Hide' : 'Show'}} Multiple Editor</button>
+    <select [(ngModel)]="options.theme" (ngModelChange)="onThemeChange($event)" name="theme">
+      <option value="" selected disabled>Theme</option>  
+      @for(theme of availableThemes; track $index){
+        <option [value]="theme">{{theme}}</option>
+      }
+      
+    </select>
 
     <div style="height: 100px">
         <ngx-monaco-editor style="height: 100%" [options]="options" [(ngModel)]="code" (onInit)="onInit($event)"></ngx-monaco-editor>
@@ -34,7 +41,7 @@ declare var monaco: any;
 
     <ngx-monaco-editor [options]="options" [model]="model"></ngx-monaco-editor>
   `,
-    styles: []
+  styles: []
 })
 export class AppComponent implements OnInit {
   codeInput = 'Sample Code';
@@ -45,6 +52,12 @@ export class AppComponent implements OnInit {
   options = {
     theme: 'vs-dark'
   };
+  availableThemes = [
+    'vs',
+    'vs-dark',
+    'hc-black',
+    'hc-light'
+  ];
   code: string;
   cssCode = `.my-class {
   color: red;
@@ -94,6 +107,11 @@ export class AppComponent implements OnInit {
   updateDiffModel() {
     this.originalModel = Object.assign({}, this.originalModel, { code: 'abcd' });
     this.modifiedModel = Object.assign({}, this.originalModel, { code: 'ABCD ef' });
+  }
+
+  onThemeChange(theme: string) {
+    this.options = Object.assign({}, this.options, { theme: theme });
+    this.editor.setTheme(theme);
   }
 
   onInit(editor) {
