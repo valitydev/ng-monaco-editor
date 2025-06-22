@@ -15,6 +15,7 @@
 - Angular 17: 17.x.x
 - Angular 18: 18.x.x
 - Angular 19: 19.x.x
+- Angular 20: 20.x.x
 
 Using this Module you can utilize the Monaco Editor as an Angular Component. Feel free to contribute, raise feature requests and make it better.
 
