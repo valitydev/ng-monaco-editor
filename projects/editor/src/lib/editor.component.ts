@@ -116,6 +116,11 @@ export class EditorComponent extends BaseEditor implements ControlValueAccessor 
       this.onTouched();
     });
 
+    this._editor.setTheme = (themeName: string): void => {
+      this.options.theme = themeName;
+      monaco.editor.setTheme(themeName);
+    };
+
     // refresh layout on resize event.
     if (this._windowResizeSubscription) {
       this._windowResizeSubscription.unsubscribe();
