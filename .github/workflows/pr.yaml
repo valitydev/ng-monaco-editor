@@ -8,4 +8,4 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: valitydev/action-frontend/setup-install@v2
-      - uses: npm run build-editor
+      - run: npm run build-editor
