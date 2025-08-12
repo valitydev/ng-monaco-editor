@@ -63,7 +63,14 @@ export abstract class BaseEditor implements AfterViewInit, OnDestroy {
         }
         const onGotAmdLoader: any = (require?: any) => {
           let usedRequire = require || (<any>window).require;
-          let requireConfig = { paths: { vs: `${baseUrl}` } };
+          let requireConfig = {
+            paths: {
+              vs: this.config.baseUrl
+                ? baseUrl
+                : // TODO: https://github.com/microsoft/monaco-editor/issues/4778
+                  new URL(baseUrl, window.location.origin).toString(),
+            },
+          };
           Object.assign(requireConfig, this.config.requireConfig || {});
 
           // Load monaco
