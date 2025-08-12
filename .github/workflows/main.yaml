@@ -1,0 +1,17 @@
+name: Main
+on:
+  push:
+    branches: ["master", "main"]
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: valitydev/action-frontend/setup-install@v2
+      - uses: npm run build-editor
+      - name: Publish
+        uses: valitydev/action-frontend/publish@v2
+        with:
+          npm-token: ${{ secrets.NPM_TOKEN }}
+          directory: ./dist/editor

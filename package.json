@@ -1,11 +1,11 @@
 {
-  "name": "ngx-monaco-editor-v2",
+  "name": "ng-monaco-editor",
   "version": "20.0.0",
   "description": "Monaco Code Editor For Angular",
   "keywords": [
     "angular",
     "monaco",
-    "monaco-editor-v2",
+    "monaco-editor",
     "code",
     "editor",
     "reusable"
