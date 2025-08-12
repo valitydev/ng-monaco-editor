@@ -1,4 +1,4 @@
-# Monaco Editor Component for Angular 2 and above.
+# Angular Monaco Editor Component
 
 - Angular 20: 20.x.x
 
