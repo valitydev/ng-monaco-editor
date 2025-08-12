@@ -82,18 +82,25 @@ export class AppComponent {
 Include editor in html with options and ngModel bindings.(eg: app.component.html)
 
 ```html
-<ngx-monaco-editor [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
+<ngx-monaco-editor
+  [options]="editorOptions"
+  [(ngModel)]="code"
+></ngx-monaco-editor>
 ```
 
 Include diff-editor in html with options.(eg: app.component.html)
 
 ```html
-<ngx-monaco-diff-editor [options]="options" [originalModel]="originalModel" [modifiedModel]="modifiedModel"></ngx-monaco-diff-editor>
+<ngx-monaco-diff-editor
+  [options]="options"
+  [originalModel]="originalModel"
+  [modifiedModel]="modifiedModel"
+></ngx-monaco-diff-editor>
 ```
 
 ```typescript
 import { Component } from "@angular/core";
-import { DiffEditorModel } from "ngx-monaco-editor";
+import { DiffEditorModel } from "@vality/ng-monaco-editor";
 
 @Component({
   selector: "app-root",
@@ -121,14 +128,22 @@ To match height of container element add height: 100% and wrap in container
 
 ```html
 <div style="height: 500px">
-  <ngx-monaco-editor style="height: 100%" [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
+  <ngx-monaco-editor
+    style="height: 100%"
+    [options]="editorOptions"
+    [(ngModel)]="code"
+  ></ngx-monaco-editor>
 </div>
 ```
 
 Add class to editor tag. (eg. class="my-code-editor")
 
 ```html
-<ngx-monaco-editor class="my-code-editor" [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
+<ngx-monaco-editor
+  class="my-code-editor"
+  [options]="editorOptions"
+  [(ngModel)]="code"
+></ngx-monaco-editor>
 ```
 
 Add styling in css/scss file:
@@ -148,7 +163,11 @@ Set automaticLayout option to adjust editor size dynamically. Recommended when u
 Output event (onInit) expose editor instance that can be used for performing custom operations on the editor.
 
 ```html
-<ngx-monaco-editor [options]="editorOptions" [(ngModel)]="code" (onInit)="onInit($event)"></ngx-monaco-editor>
+<ngx-monaco-editor
+  [options]="editorOptions"
+  [(ngModel)]="code"
+  (onInit)="onInit($event)"
+></ngx-monaco-editor>
 ```
 
 ```typescript
@@ -207,7 +226,10 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 
-import { MonacoEditorModule, NgxMonacoEditorConfig } from "@vality/ng-monaco-editor";
+import {
+  MonacoEditorModule,
+  NgxMonacoEditorConfig,
+} from "@vality/ng-monaco-editor";
 import { AppComponent } from "./app.component";
 
 export function onMonacoLoad() {
@@ -256,7 +278,11 @@ const monacoConfig: NgxMonacoEditorConfig = {
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, FormsModule, MonacoEditorModule.forRoot(monacoConfig)],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    MonacoEditorModule.forRoot(monacoConfig),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
@@ -268,7 +294,10 @@ Now pass model config of type `NgxEditorModel` to Editor Component
 ```typescript
 @Component({
   selector: "app-root",
-  template: `<ngx-monaco-editor [options]="options" [model]="model"></ngx-monaco-editor>`,
+  template: `<ngx-monaco-editor
+    [options]="options"
+    [model]="model"
+  ></ngx-monaco-editor>`,
   styles: [],
 })
 export class AppComponent {
@@ -295,7 +324,10 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 
-import { MonacoEditorModule, NgxMonacoEditorConfig } from "@vality/ng-monaco-editor";
+import {
+  MonacoEditorModule,
+  NgxMonacoEditorConfig,
+} from "@vality/ng-monaco-editor";
 import { AppComponent } from "./app.component";
 
 const monacoConfig: NgxMonacoEditorConfig = {
@@ -305,7 +337,11 @@ const monacoConfig: NgxMonacoEditorConfig = {
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, FormsModule, MonacoEditorModule.forRoot(monacoConfig)],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    MonacoEditorModule.forRoot(monacoConfig),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
@@ -351,7 +387,10 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 
-import { MonacoEditorModule, NgxMonacoEditorConfig } from "@vality/ng-monaco-editor";
+import {
+  MonacoEditorModule,
+  NgxMonacoEditorConfig,
+} from "@vality/ng-monaco-editor";
 import { AppComponent } from "./app.component";
 
 const monacoConfig: NgxMonacoEditorConfig = {
@@ -362,7 +401,11 @@ const monacoConfig: NgxMonacoEditorConfig = {
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, FormsModule, MonacoEditorModule.forRoot(monacoConfig)],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    MonacoEditorModule.forRoot(monacoConfig),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
