@@ -20,9 +20,9 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-and-deploy-demo": "npm run build:prod && cp dist/editor-tester/browser/index.html dist/editor-tester/browser/200.html && cd dist/editor-tester/browser && surge --domain ngx-monaco-editor-v2.surge.sh",
-    "build-editor": "npm run copy:readme && ng build editor",
+    "build-editor": "ng build editor && npm run copy:readme",
     "npm-publish": "npm run build-editor && bash npm-publish",
-    "copy:readme": "cp -rf README.md projects/editor/"
+    "copy:readme": "cp -rf README.md dist/editor/"
   },
   "private": false,
   "repository": {
