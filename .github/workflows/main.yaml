@@ -15,3 +15,4 @@ jobs:
         with:
           npm-token: ${{ secrets.NPM_TOKEN }}
           directory: ./dist/editor
+          npm-skip-version-up: "true"
