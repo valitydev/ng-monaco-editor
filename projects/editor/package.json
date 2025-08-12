@@ -2,6 +2,9 @@
   "name": "@vality/ng-monaco-editor",
   "version": "20.0.0",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Monaco Code Editor for Angular",
   "keywords": [
     "angular",
@@ -29,10 +32,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/miki995/ngx-monaco-editor-v2.git"
+    "url": "https://github.com/valitydev/ng-monaco-editor.git"
   },
   "bugs": {
-    "url": "https://github.com/miki995/ngx-monaco-editor-v2/issues"
+    "url": "https://github.com/valitydev/ng-monaco-editor/issues"
   },
   "license": "MIT",
   "author": "Miroslav Maksimovic",
