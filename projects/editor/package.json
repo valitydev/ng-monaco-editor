@@ -1,5 +1,5 @@
 {
-  "name": "ngx-monaco-editor-v2",
+  "name": "@vality/ng-monaco-editor",
   "version": "20.0.0",
   "private": false,
   "description": "Monaco Code Editor for Angular",
@@ -42,8 +42,8 @@
     "Thomas-Louis Simard <thomas.louis.simard@gmail.com>"
   ],
   "peerDependencies": {
-    "@angular/common": "19 - 20",
-    "@angular/core": "19 - 20",
+    "@angular/common": "^20.0.0",
+    "@angular/core": "^20.0.0",
     "monaco-editor": "^0.52.2"
   },
   "dependencies": {

@@ -1,11 +1,11 @@
 {
-  "name": "ngx-monaco-editor-v2",
+  "name": "ng-monaco-editor",
   "version": "20.0.0",
   "description": "Monaco Code Editor For Angular",
   "keywords": [
     "angular",
     "monaco",
-    "monaco-editor-v2",
+    "monaco-editor",
     "code",
     "editor",
     "reusable"
@@ -20,9 +20,11 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "build-and-deploy-demo": "npm run build:prod && cp dist/editor-tester/browser/index.html dist/editor-tester/browser/200.html && cd dist/editor-tester/browser && surge --domain ngx-monaco-editor-v2.surge.sh",
-    "build-editor": "npm run copy:readme && ng build editor",
+    "build-editor": "ng build editor && npm run copy:readme",
     "npm-publish": "npm run build-editor && bash npm-publish",
-    "copy:readme": "cp -rf README.md projects/editor/"
+    "copy:readme": "cp -rf README.md dist/editor/",
+    "format": "prettier . --check",
+    "format:fix": "prettier . --write"
   },
   "private": false,
   "repository": {
@@ -37,6 +39,9 @@
     "Atul Kumar <atulaggarwal4288@gmail.com>",
     "Miroslav Maksimovic <miroslavmaksimovic95@gmail.com>",
     "Thomas-Louis Simard <thomas.louis.simard@gmail.com>"
+  ],
+  "workspaces": [
+    "projects/*"
   ],
   "dependencies": {
     "@angular/animations": "^20.1.2",
@@ -67,6 +72,7 @@
     "karma-jasmine-html-reporter": "^2.1.0",
     "ng-packagr": "^20.0.1",
     "npm-run-all": "^4.1.5",
+    "prettier": "^3.6.2",
     "typescript": "5.8.3"
   }
 }

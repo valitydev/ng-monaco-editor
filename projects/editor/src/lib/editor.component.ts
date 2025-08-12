@@ -1,42 +1,56 @@
-import { ChangeDetectionStrategy, Component, forwardRef, inject, Input, NgZone } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { fromEvent } from 'rxjs';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  forwardRef,
+  inject,
+  Input,
+  NgZone,
+} from "@angular/core";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { fromEvent } from "rxjs";
 
-import { BaseEditor } from './base-editor';
-import { NgxEditorModel } from './types';
+import { BaseEditor } from "./base-editor";
+import { NgxEditorModel } from "./types";
 
 declare var monaco: any;
 
 @Component({
   standalone: true,
-  selector: 'ngx-monaco-editor',
+  selector: "ngx-monaco-editor",
   template: '<div class="editor-container" #editorContainer></div>',
-  styles: [`
+  styles: [
+    `
       :host {
-          display: block;
-          height: 200px;
+        display: block;
+        height: 200px;
       }
 
       .editor-container {
-          width: 100%;
-          height: 98%;
+        width: 100%;
+        height: 98%;
       }
-  `],
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => EditorComponent),
-    multi: true
-  }]
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => EditorComponent),
+      multi: true,
+    },
+  ],
 })
-export class EditorComponent extends BaseEditor implements ControlValueAccessor {
+export class EditorComponent
+  extends BaseEditor
+  implements ControlValueAccessor
+{
   private zone = inject(NgZone);
-  private _value: string = '';
+  private _value: string = "";
 
   propagateChange = (_: any) => {};
   onTouched = () => {};
 
-  @Input('options')
+  @Input("options")
   set options(options: any) {
     this._options = Object.assign({}, this.config.defaultOptions, options);
     if (this._editor) {
@@ -49,7 +63,7 @@ export class EditorComponent extends BaseEditor implements ControlValueAccessor 
     return this._options;
   }
 
-  @Input('model')
+  @Input("model")
   set model(model: NgxEditorModel) {
     this.options.model = model;
     if (this._editor) {
@@ -59,7 +73,7 @@ export class EditorComponent extends BaseEditor implements ControlValueAccessor 
   }
 
   writeValue(value: any): void {
-    this._value = value || '';
+    this._value = value || "";
     // Fix for value change while dispose in process.
     setTimeout(() => {
       if (this._editor && !this.options.model) {
@@ -81,25 +95,34 @@ export class EditorComponent extends BaseEditor implements ControlValueAccessor 
   }
 
   protected initMonaco(options: any, insideNg: boolean): void {
-
     const hasModel = !!options.model;
 
     if (hasModel) {
-      const model = monaco.editor.getModel(options.model.uri || '');
+      const model = monaco.editor.getModel(options.model.uri || "");
       if (model) {
         options.model = model;
         options.model.setValue(this._value);
       } else {
-        options.model = monaco.editor.createModel(options.model.value, options.model.language, options.model.uri);
+        options.model = monaco.editor.createModel(
+          options.model.value,
+          options.model.language,
+          options.model.uri,
+        );
       }
     }
 
     if (insideNg) {
-      this._editor = monaco.editor.create(this._editorContainer.nativeElement, options);
+      this._editor = monaco.editor.create(
+        this._editorContainer.nativeElement,
+        options,
+      );
     } else {
       this.zone.runOutsideAngular(() => {
-        this._editor = monaco.editor.create(this._editorContainer.nativeElement, options);
-      })
+        this._editor = monaco.editor.create(
+          this._editorContainer.nativeElement,
+          options,
+        );
+      });
     }
 
     if (!hasModel) {
@@ -129,8 +152,9 @@ export class EditorComponent extends BaseEditor implements ControlValueAccessor 
     if (this._windowResizeSubscription) {
       this._windowResizeSubscription.unsubscribe();
     }
-    this._windowResizeSubscription = fromEvent(window, 'resize').subscribe(() => this._editor.layout());
+    this._windowResizeSubscription = fromEvent(window, "resize").subscribe(() =>
+      this._editor.layout(),
+    );
     this.onInit.emit(this._editor);
   }
-
 }

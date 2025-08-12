@@ -36,9 +36,7 @@
                 "output": "./assets/monaco/min-maps"
               }
             ],
-            "styles": [
-              "projects/editor-tester/src/styles.css"
-            ],
+            "styles": ["projects/editor-tester/src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -101,9 +99,7 @@
               "projects/editor-tester/src/favicon.ico",
               "projects/editor-tester/src/assets"
             ],
-            "styles": [
-              "projects/editor-tester/src/styles.css"
-            ],
+            "styles": ["projects/editor-tester/src/styles.css"],
             "scripts": []
           }
         }
